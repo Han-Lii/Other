@@ -2,6 +2,8 @@
 
 WIN+D：返回桌面，再按一次恢复
 
+WIN+↑或↓：快速呼出或快速最小化到任务栏
+
 WIN+E：打开我的电脑
 
 WIN+M：最小化所有窗口
@@ -46,4 +48,4 @@ WIN+W：白板
 
 连按五下Shift：启用粘滞键（再连按五下即可退出）
 
-WIN+S：呼出搜索 作者：落樱-归尘 https://www.bilibili.com/read/cv11811862?from=note 出处：bilibili
+WIN+S：呼出搜索
