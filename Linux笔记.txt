@@ -1,0 +1,357 @@
+1. 什么是操作系统
+    ~ 计算机系统由软件和硬件构成
+    ~ 硬件：运算器、控制器、存储器（RAM）、输入设备、输出设备
+    ~ 软件：系统软件、应用软件
+    ~ 操作系统 ---> 直接覆盖在硬件上最重要的系统软件 ---> 管理各类硬件资源，提供人机交互的界面（接口）
+
+2. Linux系统的由来
+    ~ 1965年 ---> GE / MIT / Bell ---> Multics
+    ~ 1969年 ---> Ken Thompson ---> Unics
+    ~ 1970-1971年 ---> Ken Tompson ---> B语言 ---> 移植Unix
+    ~ 1972-1973年 ---> Dennis Ritchie ---> C语言 ---> 重写Unix
+    ~ 1979年 ---> Unix私有化
+    ~ 1985年 ---> Richard Stallman ---> GNU ---> FSF
+    ~ 1987年 ---> Andrew Tanenbaum ---> Minix
+    ~ 1991年 ---> Linus Torvalds ---> Linux
+
+    Linus开发了早期的Linux内核，Linux是互联网上数以万计的程序员共同智慧的结晶
+
+3. Linux发行版本 ---> 内核 + 系统工具 + 实用程序
+    ~ Redhat
+    ~ CentOS ---> CentOS Stream
+    ~ Ubuntu
+    ~ Debian
+    ~ SUSE
+    ~ Fedora
+
+4. 云服务器
+    ~ 特点：性价比高，伸缩性好
+    ~ 企业组网：VPC ---> VPN ---> Router / Switch / Firewall / Server
+    ~ SSH ---> 安全远程连接协议 ---> TCP / 22 ---> Jump Server
+    ~ SSH客户端工具：
+        - XShell ---> 商业授权
+        - FinalShell ---> 免费
+        - Termius ---> 付费 / 免费
+
+5. Shell（壳程序）---> 人机交互接口
+    ~ Bash (Bourne Again Shell)
+        ~ Tab ---> 命令和路径的自动补全
+        ~ 快捷操作
+            - ctrl+c：终止进程的执行
+            - ctrl+d：产生输入结束符（EOF）
+            - ctrl+a：将光标移动到行首
+            - ctrl+e：将光标移动到行尾
+            - ctrl+w：删除光标所在位置的单词
+            - ctrl+u：删除光标前面的内容直到行首
+            - ctrl+k：删除光标后面的内容直到行尾
+        ~ 查看历史 ---> history / 上下箭头 / !编号
+    ~ zsh / ksh / Fish
+
+6. Linux命令
+    ~ 格式 ---> 命令 [参数] [对象]
+        cal
+        cal -3
+        cal -3 8 2005
+        cal -3m 8 2005
+    ~ 获取帮助
+        - whatis
+        - man
+        - --help
+        - whereis
+        - which
+    ~ 登录注销
+        - who / w / whoami
+        - last / lastb
+        - logout / exit
+        - shutdown / reboot
+            -h / -P：关机
+            -r：重启
+            -c：取消关机或重启
+        - init 0 / init 6
+    ~ 文件系统
+        - pwd - print working directory
+        - cd - change directory
+            ~ 绝对路径：cd /etc
+            ~ 相对路径：cd ../etc  ---> cd .. ---> cd etc
+            ~ 当前路径：.
+            ~ 上级路径：..
+            ~ 当前用户的主目录：~
+        - ls - list directory contents
+            ~ -a / --all：显示所有文件
+            ~ -l：以长格式显示
+            ~ -R / --recursive：以递归的方式遍历文件夹
+            ~ -r：反转显示
+            ~ -S：根据文件大小排序
+        - mkdir - make directory
+            ~ -p / --parents：创建父文件夹
+        - rmdir - remove empty directory
+        - touch - 创建空文件
+        - rm - remove - 删除文件/文件夹
+            ~ -i：交互式删除
+            ~ -f：强制删除
+            ~ -r：递归式操作
+        - cp - copy
+            ~ -r：递归式操作
+        - mv - move - 移动文件（夹）/ 修改文件名
+        - cat - concatencate - 拼接多个文件（查看文件内容）
+            ~ -n：显示行号
+        - head / tail - 查看文件头部/尾部的部分内容
+        - more / less - 逐页逐行查看文件
+        - od - octal dump - 查看二进制文件
+        - wc - word count - 统计文件的行数、单词数、字符数
+        - find
+            ~ -name ---> 根据文件名字搜索
+            ~ -size ---> 根据文件大小搜索
+            ~ -atime ---> 根据文件最后访问时间搜索
+            ~ -mtime ---> 根据文件最后修改时间搜索
+            ~ -ctime ---> 根据文件创建时间搜索
+            ~ -type ---> 根据文件类型搜索
+        - grep
+            ~ -E ---> 使用正则表达式匹配
+        - gzip / gunzip
+        - xz
+            ~ -d ---> decompress ---> 解压缩
+            ~ -z ---> 压缩
+        - tar
+            ~ -c ---> create ---> 创建归档
+            ~ -x ---> extract ---> 从归档文件中抽取内容
+            ~ -v ---> verbose ---> 显示过程
+
+    ~ 用户和权限管理
+        - useradd ---> 创建新用户 ---> useradd wangdachui
+            ~ -d ---> HOME directory ---> /home/wangdachui
+            ~ -g ---> group ---> 指定用户所属的用户组
+        - userdel ---> 删除用户
+            ~ -f ---> force ---> 强制删除
+            ~ -r ---> remove ---> 删除用户文件
+        - passwd ---> 修改密码 ---> passwd wangdachui
+            ~ -e ---> expire ---> 密码过期
+            ~ -l / -u ---> lock / unlock ---> 锁定/解锁
+            ~ -d ---> delete ---> 删除密码
+        - chage ---> 查看和修改密码的有效期
+            ~ -l ---> list ---> 查看有效期
+            ~ -d ---> deadline ---> 最后日期
+            ~ -W ---> warning ---> 提前多少天发出警告
+        - groupadd / groupdel ---> 添加和删除用户组
+        - chmod / chown / chgrp
+            ~ chmod +x test.py
+            ~ chmod 755 test.py
+        - su ---> switch user ---> 切换用户身份
+        - sudo ---> super user do ---> 以超级管理员身份执行命令
+            ~ --list：显示sudoers清单
+        - visudo ---> 编辑sudoers清单
+        - id ---> 显示用户相关信息
+    
+    ~ 网络管理
+        - netstat -ntlp ---> 查看网络连接和端口状况
+            ~ -t ---> TCP协议
+            ~ -l ---> listen ---> 监听状态
+            ~ -p ---> process ---> 显示进程信息
+        - scp ---> 安全的文件拷贝
+            ~ scp /Users/Hao/mycal.py root@47.108.91.128:/home/wangdachui/
+            ~ scp -r ./test wangdachui@47.108.91.128:/home/wangdachui/
+            ~ scp wangdachui@47.108.91.128:/home/wangdachui/mycal.py /root/
+        - sftp ---> 安全的文件传输
+            ~ sftp root@47.108.91.128
+            ~ sftp>
+                - get：下载文件
+                - put：上传文件
+                - ls：列出服务器文件清单
+                - cd：切换服务器目录
+                - quit：退出
+        - ssh ---> 安全的远程连接
+            ~ ssh root@192.168.100.105
+            ~ -p ---> port ---> 指定端口（如果没有使用默认的22端口）
+            ~ -J ---> 指定跳板机 ---> ssh -J username@jump_host username@remote_host
+        - ping ---> 检测网络可达性
+            ICMP ---> PING to DEATH ---> DDoS ---> 高防服务
+            ~ -c ---> count ---> 次数
+            ~ -i ---> 间隔的秒数
+        - wget ---> 基于URL的网络下载器
+            ~ -O ---> output ---> 指定输出文件的名字
+            ~ --limit-rate：限制下载速率
+            ~ --tries：重试次数
+            ~ -c ---> continue ---> 继续一个未完成的下载
+            ~ -P ---> path ---> 指定下载路径
+            ~ -i ---> input ---> 从文件中读取URL清单进行下载
+
+    ~ 进程管理
+        - ps ---> 进程相关信息
+            ~ ps aux / ps -ef ---> 查看所有运行的进程（BSD格式）
+            ~ -e ---> everyone ---> 查看每个进程
+            ~ -f ---> format ---> 完整格式
+            ~ -u ---> user ---> 查看指定用户的进程
+        - pstree ---> 进程树
+            ~ -p ---> PID ---> 显示进程号
+        - pgrep ---> 根据进程的名字搜索进程的PID
+            ~ pgrep mysql
+        - kill ---> 结束进程（向指定PID的进程发出终止信号）
+            ~ -1 ---> SIGHUP
+            ~ -2 ---> SIGINT
+            ~ -9 ---> SIGKILL
+            ~ -15 ---> SIGTERM ---> 默认
+            ~ -19 ---> SIGSTOP
+        - pkill ---> 根据进程的名字结束进程
+            ~ -f ---> full ---> 完全匹配
+        - top ---> 任务管理器
+            ~ -i ---> idle ---> 不显示空闲和僵尸进程
+            ~ -u ---> user ---> 指定用户
+            ~ -o ---> order ---> 指定按照哪个列排序
+
+        & ---> 将进程放到后台运行
+        > ---> 输出重定向
+        2> ---> 错误输出重定向
+        ctrl+z ---> 将进程暂停并放到后台
+
+        - jobs ---> 查看后台任务
+            ~ -l ---> 显示进程号
+            ~ -s ---> stopped ---> 显示暂停的进程
+            ~ -r ---> running ---> 显示运行的进程
+        - fg ---> 将后台任务放到前台运行
+        - bg ---> 让停止的任务在后台运行
+        - nohup ---> 将程序以忽略挂起信号的方式运行起来
+
+7. 安装软件和配置服务
+    ~ 使用包管理工具
+        - yum - yellowdog updater modified
+            ~ 搜索：yum search nginx
+            ~ 安装：yum install -y nginx
+            ~ 查看：yum list installed | grep "nginx"
+            ~ 信息：yum info nginx
+            ~ 卸载：yum remove nginx / yum erase nginx
+            ~ 更新：yum update nginx / yum update
+
+            ~ 启动：systemctl start nginx
+            ~ 停止：systemctl stop nginx
+            ~ 重启：systemctl restart nginx
+            ~ 查看状态：systemctl status nginx
+
+        yum安装MySQL
+            ~ wget https://dev.mysql.com/get/mysql80-community-release-el7-6.noarch.rpm
+            ~ rpm -ivh mysql80-community-release-el7-6.noarch.rpm
+            ~ rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+            ~ yum install -y mysql-community-server
+        
+        - rpm - redhat package manager
+            安装MySQL
+            ~ 下载RPM安装包：
+            wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.29-1.el7.x86_64.rpm-bundle.tar
+            ~ 解归档：
+            mkdir mysql
+            tar -xvf mysql-8.0.29-1.el7.x86_64.rpm-bundle.tar -C mysql/
+            ~ 移除mariadb相关的包：
+            yum erase -y mariadb-libs
+            ~ 补包：
+            yum install -y libaio libaio-devel openssl-devel
+            ~ 安装：
+            rpm -ivh mysql-community-common-8.0.29-1.el7.x86_64.rpm
+            rpm -ivh mysql-community-client-plugins-8.0.29-1.el7.x86_64.rpm
+            rpm -ivh mysql-community-libs-8.0.29-1.el7.x86_64.rpm
+            rpm -ivh mysql-community-devel-8.0.29-1.el7.x86_64.rpm
+            rpm -ivh mysql-community-client-8.0.29-1.el7.x86_64.rpm
+            rpm -ivh mysql-community-icu-data-files-8.0.29-1.el7.x86_64.rpm
+            rpm -ivh mysql-community-server-8.0.29-1.el7.x86_64.rpm
+
+            ~ 查看：
+            yum list installed | grep "mysql"
+            rpm -qa | grep "mysql"
+
+            ~ 移除：
+            rpm -e mysql-community-devel-8.0.29-1.el7.x86_64
+            rpm -qa | grep "mysql" | xargs rpm -e
+
+            ~ 启动MySQL
+            systemctl start mysqld
+
+            ~ 初次使用查看随机密码
+            cat /var/log/mysqld.log | grep "password"
+
+            ~ 连接MySQL
+            mysql -u root -p
+
+            alter user 'root'@'localhost' identified by 'Luohao.618';
+            create user 'wangdachui'@'%' identified by 'Wang.618';
+            grant all privileges on *.* to 'wangdachui'@'%';
+
+
+    ~ 源代码构建安装
+        安装Python 3.9
+        - 移除旧版本：
+            yum erase -y python3
+        - 下载：
+            wget https://www.python.org/ftp/python/3.9.13/Python-3.9.13.tgz
+        - 验证（非必需）：
+            md5sum Python-3.9.13.tgz
+        - 解归档：
+            tar -zxf Python-3.9.13.tgz
+        - 环境检查：
+            gcc --version
+            make --version
+        - 补包：
+            yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel \
+                sqlite-devel readline-devel tk-devel gdbm-devel libdb4-devel \
+                libpcap-devel xz-devel libffi-devel libxml2
+        - 运行configure程序：
+            cd Python-3.9.13
+            ./configure --prefix=/usr/local/python39
+        - 构建安装：
+            make && make install
+        - 配置环境变量：
+            export PATH=$PATH:/usr/local/python39/bin
+
+            用户环境变量 ---> ~/.bash_profile
+            系统环境变量 ---> /etc/bashrc
+
+    ~ 直接运行二进制程序或安装脚本
+        安装fineBI
+        - 下载：
+        wget https://fine-build.oss-cn-shanghai.aliyuncs.com/finebi/5.1.3/stable/exe/spider/linux_unix_FineBI5_1-CN.sh
+        - 修改执行权限：
+        chmod u+x,g+x,o+x linux_unix_FineBI5_1-CN.sh
+        chmod 755 linux_unix_FineBI5_1-CN.sh
+        - 运行Shell脚本：
+        ./linux_unix_FineBI5_1-CN.sh
+        - 访问：
+        http://公网IP地址:37799/webroot/decision
+
+8. Vim的使用
+    命令模式：
+    ~ 移动光标：G / gg / 100G / h j k l / 0 $ / w e / ctrl+f / ctrl+b / ctrl+e / ctrl+y
+    ~ 编辑内容：dd / d0 / d$ / d10h / d5j / dw / yy / y0 / y$ / yw / p P / u / ctrl+r / .
+    ~ 编辑模式：a / A / i / I / o / O ---> 回到命令模式 ---> Esc
+    ~ 保存退出：ZZ
+
+    末行模式（底线命令模式）：
+    ~ 显示行号：set nu / set nonu
+    ~ 设置制表键的空格数：set ts=4
+    ~ 语法高亮：syntax on / syntax off
+    ~ 显示标尺：set ruler / set noruler
+    ~ 自动缩进：set autoindent / set noautoindent
+    ~ 制表键变空格：set expandtab / set noexpandtab
+    ---> ~/.vimrc
+
+    ~ 取消高亮：nohls
+
+    ~ 拆分窗口：vs / sp
+    ~ 列出打开的文件：ls
+    ~ 切换文件：b <编号>
+
+    ~ 保存：w / w!
+    ~ 退出：q / q! / qa
+
+    ~ 搜索：? / ---> 进入末行模式 ---> 输入搜索的关键词
+    ~ 替换：1,$s/搜索的内容/替代的内容/iceg
+        - i ---> ignore case ---> 忽略大小写
+        - c ---> confirm ---> 确认
+        - e ---> error ---> 遇到错误如何处理
+        - g ---> global ---> 全局模式
+
+    ~ 执行系统命令：!命令 [参数] [对象]
+
+9. 处理数据的命令
+    ~ uniq / sort / tr / cut / paste
+    ~ sed / awk
+
+10. Shell编程 ---> 定时任务
+    ~ at / atq / atrm
+    ~ crontab
